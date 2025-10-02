@@ -4,13 +4,11 @@ import Header from './header';
 export default function LandingPage({ onGetStarted }) {
   return (
     <div className="min-h-screen relative">
-      {/* Header with highest z-index */}
       <div style={{ position: 'relative', zIndex: 100 }}>
         <Header onGetStarted={onGetStarted} />
       </div>
       
       <div className="min-h-screen flex items-center p-6" style={{ position: 'relative' }}>
-        {/* Video Background */}
         <video
           autoPlay
           muted
@@ -32,7 +30,6 @@ export default function LandingPage({ onGetStarted }) {
         
         
         
-        {/* Content - Left Aligned */}
         <div 
           className="max-w-2xl text-left text-white ml-32 md:ml-64"
           style={{ zIndex: 10, position: 'relative' }}
@@ -48,7 +45,6 @@ export default function LandingPage({ onGetStarted }) {
         </div>
       </div>
 
-      {/* About Section */}
       <section id="about" className="min-h-screen bg-gray-400 px-6 py-20 flex items-center justify-center">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-6xl font-bold text-black mb-8">About</h2>

@@ -1,9 +1,8 @@
 const Header = ({ onGetStarted, showOnlyHome = false }) => {
     const handleMenuClick = (menu) => {
         if (menu === "CREATE" && onGetStarted) {
-            onGetStarted(); // Call the same function as the main CREATE button
+            onGetStarted(); 
         } else if (menu === "About Us") {
-            // Smooth scroll to About section
             const aboutSection = document.getElementById('about');
             if (aboutSection) {
                 aboutSection.scrollIntoView({ 
@@ -12,14 +11,13 @@ const Header = ({ onGetStarted, showOnlyHome = false }) => {
                 });
             }
         } else if (menu === "HOME" && onGetStarted) {
-            onGetStarted(); // Go back to home
+            onGetStarted(); 
         }
     };
 
     return (
         <header className="fixed top-4 left-4 right-4 z-50">
             <nav className="flex justify-between items-center px-6 py-0 bg-white bg-opacity-90 backdrop-blur-md rounded-2xl border border-white border-opacity-30 shadow-lg max-w-6xl mx-auto">
-                {/* Logo */}
                 <div className="flex items-center">
                     <img 
                         src="/img.png" 
@@ -28,7 +26,6 @@ const Header = ({ onGetStarted, showOnlyHome = false }) => {
                     />
                 </div>
                 
-                {/* Menu Items */}
                 <div className="flex items-center space-x-4">
                     {showOnlyHome ? (
                         <button 

@@ -15,7 +15,7 @@ function App() {
 
   const handleGenerate = async () => {
     setIsLoading(true);
-    setRequirements(null); // Clear previous results
+    setRequirements(null); 
     
     try {
       const res = await fetch("http://localhost:5000/api/requirements", {
@@ -27,7 +27,6 @@ function App() {
       setRequirements(data);
     } catch (error) {
       console.error("Error generating app:", error);
-      // You could add error handling here
     } finally {
       setIsLoading(false);
     }
@@ -39,7 +38,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-400">
-      {/* Header with only Home button */}
       <Header onGetStarted={() => setShowLanding(true)} showOnlyHome={true} />
       
       <div className="max-w-4xl mx-auto pt-40 px-6">
@@ -71,7 +69,6 @@ function App() {
           </button>
         </div>
 
-        {/* Loading Progress Bar */}
         {isLoading && (
           <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
             <div className="text-center mb-4">

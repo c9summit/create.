@@ -10,22 +10,29 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB connect
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error(err));
 
-// Schema
 const requirementSchema = new mongoose.Schema({
   description: String,
   appName: String,
   entities: [String],
   roles: [String],
   features: [String],
+  layout: {
+    theme: String,
+    primaryColor: String,
+    secondaryColor: String,
+    backgroundColor: String,
+    layoutStyle: String,
+    componentSpacing: String,
+    cardStyle: String,
+    buttonStyle: String
+  }
 });
 const Requirement = mongoose.model("Requirement", requirementSchema);
 
-// API route: capture requirements
 app.post("/api/requirements", async (req, res) => {
   const { description } = req.body;
   console.log("Received request:", description);

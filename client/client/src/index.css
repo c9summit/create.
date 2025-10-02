@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Video background styles */
 .video-background {
   position: absolute;
   top: 0;
