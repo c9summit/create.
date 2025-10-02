@@ -48,6 +48,42 @@ export default function GeneratedApp({ requirements }) {
     return color;
   };
 
+  const getColorClasses = (color, type = "text", shade = "800") => {
+    const colorMaps = {
+      text: {
+        blue: `text-blue-${shade}`,
+        green: `text-green-${shade}`,
+        purple: `text-purple-${shade}`,
+        red: `text-red-${shade}`,
+        orange: `text-orange-${shade}`,
+        pink: `text-pink-${shade}`,
+        indigo: `text-indigo-${shade}`,
+        gray: `text-gray-${shade}`
+      },
+      bg: {
+        blue: `bg-blue-${shade}`,
+        green: `bg-green-${shade}`,
+        purple: `bg-purple-${shade}`,
+        red: `bg-red-${shade}`,
+        orange: `bg-orange-${shade}`,
+        pink: `bg-pink-${shade}`,
+        indigo: `bg-indigo-${shade}`,
+        gray: `bg-gray-${shade}`
+      },
+      hover: {
+        blue: `hover:bg-blue-${shade}`,
+        green: `hover:bg-green-${shade}`,
+        purple: `hover:bg-purple-${shade}`,
+        red: `hover:bg-red-${shade}`,
+        orange: `hover:bg-orange-${shade}`,
+        pink: `hover:bg-pink-${shade}`,
+        indigo: `hover:bg-indigo-${shade}`,
+        gray: `hover:bg-gray-${shade}`
+      }
+    };
+    return colorMaps[type]?.[color] || colorMaps[type]?.blue || "";
+  };
+
   const getCardStyle = () => {
     const style = layout.cardStyle || "shadow";
     const styles = {
@@ -74,8 +110,8 @@ export default function GeneratedApp({ requirements }) {
     };
     
     const colorStyle = isPrimary 
-      ? `bg-${primary}-600 text-white hover:bg-${primary}-700`
-      : `bg-${secondary}-100 text-${secondary}-700 hover:bg-${secondary}-200`;
+      ? `${getColorClasses(primary, "bg", "600")} text-white ${getColorClasses(primary, "hover", "700")}`
+      : `${getColorClasses(secondary, "bg", "100")} ${getColorClasses(secondary, "text", "700")} ${getColorClasses(secondary, "hover", "200")}`;
     
     return `${baseStyles[style]} ${colorStyle} transition-all duration-200`;
   };
@@ -95,7 +131,7 @@ export default function GeneratedApp({ requirements }) {
   return (
     <div className={getThemeClasses()}>
       <div className="p-6 max-w-6xl mx-auto">
-        <h1 className={`text-4xl font-bold mb-8 text-center text-${getPrimaryColor()}-800`}>
+        <h1 className={`text-4xl font-bold mb-8 text-center ${getColorClasses(getPrimaryColor(), "text", "800")}`}>
           {appName}
         </h1>
 
@@ -111,8 +147,8 @@ export default function GeneratedApp({ requirements }) {
                   onClick={() => setActiveRole(roleName)}
                   className={`px-6 py-3 ${getButtonStyle()} shadow-md
                     ${isActive 
-                      ? `bg-${getPrimaryColor()}-600 text-white` 
-                      : `bg-${getSecondaryColor()}-100 text-${getSecondaryColor()}-700 hover:bg-${getSecondaryColor()}-200`
+                      ? `${getColorClasses(getPrimaryColor(), "bg", "600")} text-white` 
+                      : `${getColorClasses(getSecondaryColor(), "bg", "100")} ${getColorClasses(getSecondaryColor(), "text", "700")} ${getColorClasses(getSecondaryColor(), "hover", "200")}`
                     }`}
                 >
                   {roleName}
@@ -132,10 +168,10 @@ export default function GeneratedApp({ requirements }) {
                   key={idx}
                   className={`p-6 ${getCardStyle()} hover:shadow-xl text-center transform hover:scale-105 transition-all duration-200`}
                 >
-                  <div className={`text-lg font-semibold text-${getPrimaryColor()}-700 mb-2`}>
+                  <div className={`text-lg font-semibold ${getColorClasses(getPrimaryColor(), "text", "700")} mb-2`}>
                     {featureText}
                   </div>
-                  <div className={`text-${getSecondaryColor()}-600 text-sm`}>
+                  <div className={`${getColorClasses(getSecondaryColor(), "text", "600")} text-sm`}>
                     Click to access
                   </div>
                 </button>
@@ -152,22 +188,22 @@ export default function GeneratedApp({ requirements }) {
 
               return (
                 <div key={idx} className={`p-6 ${getCardStyle()} transform hover:scale-105 transition-all duration-200`}>
-                  <h2 className={`text-xl font-semibold mb-4 text-${getPrimaryColor()}-800`}>
+                  <h2 className={`text-xl font-semibold mb-4 ${getColorClasses(getPrimaryColor(), "text", "800")}`}>
                     {entityName} Form
                   </h2>
                   {entityDesc && (
-                    <p className={`text-${getSecondaryColor()}-600 mb-4`}>{entityDesc}</p>
+                    <p className={`${getColorClasses(getSecondaryColor(), "text", "600")} mb-4`}>{entityDesc}</p>
                   )}
                   <div className="space-y-3">
                     <input
                       type="text"
                       placeholder={`${entityName} Name`}
-                      className={`w-full p-3 border-2 border-${getSecondaryColor()}-200 rounded-lg focus:border-${getPrimaryColor()}-500 focus:outline-none transition-colors`}
+                      className={`w-full p-3 border-2 border-gray-200 rounded-lg focus:${getColorClasses(getPrimaryColor(), "text", "500").replace("text-", "border-")} focus:outline-none transition-colors`}
                     />
                     <input
                       type="text"
                       placeholder={`${entityName} ID`}
-                      className={`w-full p-3 border-2 border-${getSecondaryColor()}-200 rounded-lg focus:border-${getPrimaryColor()}-500 focus:outline-none transition-colors`}
+                      className={`w-full p-3 border-2 border-gray-200 rounded-lg focus:${getColorClasses(getPrimaryColor(), "text", "500").replace("text-", "border-")} focus:outline-none transition-colors`}
                     />
                     <button className={`w-full py-3 ${getButtonStyle(true)} font-semibold shadow-md hover:shadow-lg`}>
                       Save {entityName}
