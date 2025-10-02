@@ -32,7 +32,7 @@ function App() {
           <h1 className="text-3xl font-bold text-gray-800">AI App Builder</h1>
           <button
             onClick={() => setShowLanding(true)}
-            className="text-blue-600 hover:text-blue-800 font-medium"
+            className="text-red-600 hover:text-red-800 font-medium"
           >
             ← Back to Home
           </button>
@@ -49,7 +49,7 @@ function App() {
           <button
             onClick={handleGenerate}
             disabled={!description.trim()}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-medium"
+            className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-medium"
           >
             Generate App Structure
           </button>
